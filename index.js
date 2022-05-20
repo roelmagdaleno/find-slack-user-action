@@ -27,7 +27,7 @@ async function getUserData() {
 
 		let userOutput = {};
 
-		fields.split(',');
+		fields = fields.split(',');
 
 		fields.map((field, index) => setWith(
 			userOutput,
