@@ -1,5 +1,5 @@
 name: 'Find Slack User'
-description: 'Github Action to find a Slack user data by email.'
+description: 'GitHub Action to find a Slack user data by email.'
 branding:
   icon: 'user'
   color: 'blue'

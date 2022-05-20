@@ -1,7 +1,7 @@
 {
     "name": "find-slack-user-action",
     "version": "1.0.0",
-    "description": "Github Action to find a Slack user data by email.",
+    "description": "GitHub Action to find a Slack user data by email.",
     "main": "index.js",
     "scripts": {
         "prepare": "ncc build index.js --minify --license licenses.txt"
