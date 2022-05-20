@@ -1,0 +1,18 @@
+name: 'Find Slack User'
+description: 'Github Action to find a Slack user data by email.'
+branding:
+  icon: 'user'
+  color: 'blue'
+inputs:
+  email:
+    description: 'Email'
+    required: true
+  fields:
+    description: 'The fields you want to get in the response'
+    required: true
+outputs:
+  user:
+    description: 'The Slack user data'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

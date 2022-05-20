@@ -1,0 +1,24 @@
+{
+    "name": "find-slack-user-action",
+    "version": "1.0.0",
+    "description": "Github Action to find a Slack user data by email.",
+    "main": "index.js",
+    "scripts": {
+        "prepare": "ncc build index.js --minify --license licenses.txt"
+    },
+    "keywords": [
+        "slack",
+        "user",
+        "action"
+    ],
+    "author": "Roel Magdaleno",
+    "license": "MIT",
+    "dependencies": {
+        "@actions/core": "^1.8.2",
+        "@slack/web-api": "^6.7.1",
+        "lodash": "^4.17.21"
+    },
+    "devDependencies": {
+        "@vercel/ncc": "^0.33.4"
+    }
+}
