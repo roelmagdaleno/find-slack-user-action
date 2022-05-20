@@ -25,18 +25,34 @@ async function getUserData() {
 			throw new Error('The fields value is required to run this action.');
 		}
 
-		let userOutput = {};
-
+		let rawUserOutput = {};
 		fields = fields.split(',');
 
 		fields.map((field, index) => setWith(
-			userOutput,
+			rawUserOutput,
 			fields[index],
 			get(response.user, fields[index], 'invalid_field')
 		));
 
+		Object.entries(rawUserOutput).map((user) => {
+			let outputKey = user[0];
+			let outputValue = user[1];
+
+			if (typeof user[1] !== 'object') {
+				core.setOutput(outputKey, outputValue);
+				return;
+			}
+
+			for (let nestedObjKey in user[1]) {
+				outputKey = `${user[0]}_${nestedObjKey}`;
+				outputValue = user[1][nestedObjKey];
+
+				core.setOutput(outputKey, outputValue);
+			}
+		});
+
 		core.info('Success');
-		core.setOutput('user', userOutput);
+		core.setOutput('user', rawUserOutput);
 	} catch (error) {
 		core.setFailed(error.message);
 	}
