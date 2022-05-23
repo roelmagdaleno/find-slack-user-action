@@ -146,20 +146,18 @@ ${{ steps.slack_user.outputs.profile_display_name }}
 
 As you can see, the `profile` property will be used as a prefix for the data you really want.
 
-### `user` output and `jq`
+### The `user` output
 
 It also outputs the `user` value that contains the user data you specified in the `fields` attribute.
 
 The `user` output is a JSON in string format (GitHub does this by default with all JSON values).
 
-You can use `jq` to get any value inside the `user` output:
+So, if you want to use the data as JSON you will have to use the [fromJson](https://docs.github.com/en/actions/learn-github-actions/expressions#fromjson) function that GitHub provides.
 
-```yaml
-- name: Print User ID
-  run: echo '${{ steps.slack_user.outputs.user }}' | jq '.id'
 ```
-
-As you can see, the usage of [single fields](#single-fields) instead of `user` is quite easy. It will depend on you and your workflow what method to use.
+${{ fromJson(steps.slack_user.outputs.user).id }}
+${{ fromJson(steps.slack_user.outputs.user).profile.avatar_hash }}
+```
 
 ## Available Fields
 

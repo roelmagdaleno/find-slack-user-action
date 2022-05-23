@@ -1,6 +1,6 @@
 {
     "name": "find-slack-user-action",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "GitHub Action to find a Slack user data by email.",
     "main": "index.js",
     "scripts": {
