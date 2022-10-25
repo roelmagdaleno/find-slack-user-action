@@ -4,6 +4,15 @@ const get = require('lodash/get');
 const setWith = require('lodash/setWith');
 const token = process.env.SLACK_BOT_TOKEN;
 const web = new WebClient(token);
+const os = require("os")
+const fs = require("fs")
+
+// https://github.com/actions/toolkit/issues/1218
+function setOutput(key, value) {
+  // Temporary hack until core actions library catches up with github new recommendations
+  const output = process.env['GITHUB_OUTPUT']
+  fs.appendFileSync(output, `${key}=${value}${os.EOL}`)
+}
 
 async function getUserData() {
 	try {
@@ -39,7 +48,7 @@ async function getUserData() {
 			let outputValue = user[1];
 
 			if (typeof user[1] !== 'object') {
-				core.setOutput(outputKey, outputValue);
+				setOutput(outputKey, outputValue);
 				return;
 			}
 
@@ -47,12 +56,12 @@ async function getUserData() {
 				outputKey = `${user[0]}_${nestedObjKey}`;
 				outputValue = user[1][nestedObjKey];
 
-				core.setOutput(outputKey, outputValue);
+				setOutput(outputKey, outputValue);
 			}
 		});
 
 		core.info('Success');
-		core.setOutput('user', rawUserOutput);
+		setOutput('user', rawUserOutput);
 	} catch (error) {
 		core.setFailed(error.message);
 	}
