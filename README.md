@@ -32,7 +32,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Get Slack User Data
         id: slack_user
@@ -44,7 +44,7 @@ jobs:
           SLACK_BOT_TOKEN: xoxb-xxxxxx-xxxxxxx
 
       - name: Notify Slack Channel
-        uses: slackapi/slack-github-action@v1.19.0
+        uses: slackapi/slack-github-action@v1.23.0
         with:
           channel-id: C0XXXXXXXXC
           payload: |

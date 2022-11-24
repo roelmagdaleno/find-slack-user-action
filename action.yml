@@ -14,5 +14,5 @@ outputs:
   user:
     description: 'The Slack user data'
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'
